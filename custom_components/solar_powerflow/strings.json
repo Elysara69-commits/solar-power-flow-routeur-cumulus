@@ -1,0 +1,248 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Solar Powerflow · equipment",
+        "description": "Tick the installed equipment, then what should appear on the card. The next step shows one settings tab per ticked equipment.",
+        "data": {
+          "name": "Installation name",
+          "has_battery": "Battery installed",
+          "show_battery": "Show the battery on the card",
+          "has_router": "Solar router installed",
+          "show_router": "Show the router on the card",
+          "has_cumulus": "Water heater installed",
+          "show_cumulus": "Show the water heater on the card"
+        },
+        "data_description": {
+          "name": "Card title and device name in Home Assistant.",
+          "show_battery": "Ignored when no battery is installed.",
+          "show_router": "Ignored when no router is installed.",
+          "show_cumulus": "Ignored when no water heater is installed."
+        }
+      },
+      "entities": {
+        "title": "Solar Powerflow · sensors",
+        "description": "One tab per equipment: click its title to expand or collapse it. Powers in kW are converted to W automatically.",
+        "sections": {
+          "pv": {
+            "name": "☀️ Photovoltaics",
+            "description": "Production, house consumption and installation power.",
+            "data": {
+              "pv_power": "Production power",
+              "load_power": "Total house consumption",
+              "pv_peak": "Installation power",
+              "load_includes_cumulus": "House consumption includes the water heater",
+              "grid_import_threshold": "Report grid import above"
+            },
+            "data_description": {
+              "pv_power": "Instant solar power sensor (W or kW).",
+              "load_power": "Instant consumption sensor for the whole house.",
+              "pv_peak": "Peak power (W). Scales the gauges and the flow speed.",
+              "load_includes_cumulus": "Ticked: the water heater is part of the total consumption (main meter). The water heater detail is deducted from it.",
+              "grid_import_threshold": "Below this, the computed import is ignored: no animated flow, no badge, self-sufficiency not reduced."
+            }
+          },
+          "battery": {
+            "name": "🔋 Battery",
+            "description": "State of charge, charge and discharge power, capacity.",
+            "data": {
+              "soc": "State of charge",
+              "charge_power": "Charge power",
+              "discharge_power": "Discharge power",
+              "capacity": "Battery capacity"
+            },
+            "data_description": {
+              "soc": "Battery level sensor (%).",
+              "charge_power": "Charge power sensor (W or kW).",
+              "discharge_power": "Discharge power sensor (W or kW).",
+              "capacity": "Usable capacity (kWh). 0 hides the stored energy."
+            }
+          },
+          "router": {
+            "name": "🔀 Solar router",
+            "description": "Router measurements, all optional: shown in the card details. The surplus sent to the router is always computed from production and consumption.",
+            "data": {
+              "surplus_flow": "Solar surplus flow",
+              "cumulus_flow": "Flow to the water heater",
+              "grid_flow": "Flow to the grid",
+              "router_power": "Router power"
+            },
+            "data_description": {
+              "surplus_flow": "Surplus measured by the router (W).",
+              "cumulus_flow": "Power sent to the water heater by the router (W). Used for the water heater when its tab has no power sensor.",
+              "grid_flow": "Export measured by the router (W).",
+              "router_power": "Router output power (W)."
+            }
+          },
+          "cumulus": {
+            "name": "♨️ Water heater",
+            "description": "Heating power, temperature and setpoint.",
+            "data": {
+              "heating_power": "Heating power",
+              "temperature": "Water heater temperature",
+              "max_setpoint": "Maximum heating setpoint"
+            },
+            "data_description": {
+              "heating_power": "Power drawn by the heating element (W). Optional if the router already measures the flow to the water heater.",
+              "temperature": "Water temperature sensor (°C).",
+              "max_setpoint": "Target maximum temperature (°C). The gauge fills up to this value."
+            }
+          }
+        }
+      }
+    },
+    "error": {
+      "same_entity": "Production and consumption must be two different sensors.",
+      "battery_power": "Provide at least the battery charge power or discharge power."
+    },
+    "abort": {
+      "single_instance_allowed": "Solar Powerflow is already configured. Use “Configure” to change the settings."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Solar Powerflow · equipment",
+        "description": "Tick the installed equipment, then what should appear on the card. The next step shows one settings tab per ticked equipment.",
+        "data": {
+          "name": "Installation name",
+          "has_battery": "Battery installed",
+          "show_battery": "Show the battery on the card",
+          "has_router": "Solar router installed",
+          "show_router": "Show the router on the card",
+          "has_cumulus": "Water heater installed",
+          "show_cumulus": "Show the water heater on the card"
+        },
+        "data_description": {
+          "name": "Card title and device name in Home Assistant.",
+          "show_battery": "Ignored when no battery is installed.",
+          "show_router": "Ignored when no router is installed.",
+          "show_cumulus": "Ignored when no water heater is installed."
+        }
+      },
+      "entities": {
+        "title": "Solar Powerflow · sensors",
+        "description": "One tab per equipment: click its title to expand or collapse it. Powers in kW are converted to W automatically.",
+        "sections": {
+          "pv": {
+            "name": "☀️ Photovoltaics",
+            "description": "Production, house consumption and installation power.",
+            "data": {
+              "pv_power": "Production power",
+              "load_power": "Total house consumption",
+              "pv_peak": "Installation power",
+              "load_includes_cumulus": "House consumption includes the water heater",
+              "grid_import_threshold": "Report grid import above"
+            },
+            "data_description": {
+              "pv_power": "Instant solar power sensor (W or kW).",
+              "load_power": "Instant consumption sensor for the whole house.",
+              "pv_peak": "Peak power (W). Scales the gauges and the flow speed.",
+              "load_includes_cumulus": "Ticked: the water heater is part of the total consumption (main meter). The water heater detail is deducted from it.",
+              "grid_import_threshold": "Below this, the computed import is ignored: no animated flow, no badge, self-sufficiency not reduced."
+            }
+          },
+          "battery": {
+            "name": "🔋 Battery",
+            "description": "State of charge, charge and discharge power, capacity.",
+            "data": {
+              "soc": "State of charge",
+              "charge_power": "Charge power",
+              "discharge_power": "Discharge power",
+              "capacity": "Battery capacity"
+            },
+            "data_description": {
+              "soc": "Battery level sensor (%).",
+              "charge_power": "Charge power sensor (W or kW).",
+              "discharge_power": "Discharge power sensor (W or kW).",
+              "capacity": "Usable capacity (kWh). 0 hides the stored energy."
+            }
+          },
+          "router": {
+            "name": "🔀 Solar router",
+            "description": "Router measurements, all optional: shown in the card details. The surplus sent to the router is always computed from production and consumption.",
+            "data": {
+              "surplus_flow": "Solar surplus flow",
+              "cumulus_flow": "Flow to the water heater",
+              "grid_flow": "Flow to the grid",
+              "router_power": "Router power"
+            },
+            "data_description": {
+              "surplus_flow": "Surplus measured by the router (W).",
+              "cumulus_flow": "Power sent to the water heater by the router (W). Used for the water heater when its tab has no power sensor.",
+              "grid_flow": "Export measured by the router (W).",
+              "router_power": "Router output power (W)."
+            }
+          },
+          "cumulus": {
+            "name": "♨️ Water heater",
+            "description": "Heating power, temperature and setpoint.",
+            "data": {
+              "heating_power": "Heating power",
+              "temperature": "Water heater temperature",
+              "max_setpoint": "Maximum heating setpoint"
+            },
+            "data_description": {
+              "heating_power": "Power drawn by the heating element (W). Optional if the router already measures the flow to the water heater.",
+              "temperature": "Water temperature sensor (°C).",
+              "max_setpoint": "Target maximum temperature (°C). The gauge fills up to this value."
+            }
+          }
+        }
+      }
+    },
+    "error": {
+      "same_entity": "Production and consumption must be two different sensors.",
+      "battery_power": "Provide at least the battery charge power or discharge power."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "etat": {
+        "name": "Status",
+        "state": {
+          "veille": "Idle",
+          "autoconsommation": "Self-consumption",
+          "charge_batterie": "Battery charging",
+          "routage_cumulus": "Routing to water heater",
+          "surplus_injecte": "Surplus exported",
+          "sur_batterie": "On battery",
+          "soutirage_reseau": "Grid import"
+        }
+      },
+      "surplus_solaire": {
+        "name": "Solar surplus"
+      },
+      "surplus_routeur": {
+        "name": "Surplus to router"
+      },
+      "consommation_hors_cumulus": {
+        "name": "Consumption excluding water heater"
+      },
+      "cumulus_solaire": {
+        "name": "Water heater from solar"
+      },
+      "cumulus_reseau": {
+        "name": "Water heater from grid"
+      },
+      "cumulus_batterie": {
+        "name": "Water heater from battery"
+      },
+      "part_cumulus": {
+        "name": "Water heater share"
+      },
+      "reseau_soutirage": {
+        "name": "Grid import"
+      },
+      "reseau_injection": {
+        "name": "Grid export"
+      },
+      "autonomie": {
+        "name": "Self-sufficiency"
+      },
+      "autoconsommation": {
+        "name": "Self-consumption"
+      }
+    }
+  }
+}

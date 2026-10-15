@@ -1,0 +1,248 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Solar Powerflow · équipements",
+        "description": "Cochez le matériel installé, puis ce qui doit apparaître sur la carte. L'étape suivante propose un onglet de réglages par matériel coché.",
+        "data": {
+          "name": "Nom de l'installation",
+          "has_battery": "Batterie installée",
+          "show_battery": "Afficher la batterie sur la carte",
+          "has_router": "Routeur solaire installé",
+          "show_router": "Afficher le routeur sur la carte",
+          "has_cumulus": "Cumulus (chauffe-eau) installé",
+          "show_cumulus": "Afficher le cumulus sur la carte"
+        },
+        "data_description": {
+          "name": "Titre de la carte et nom de l'appareil dans Home Assistant.",
+          "show_battery": "Sans batterie installée, ce choix est ignoré.",
+          "show_router": "Sans routeur installé, ce choix est ignoré.",
+          "show_cumulus": "Sans cumulus installé, ce choix est ignoré."
+        }
+      },
+      "entities": {
+        "title": "Solar Powerflow · capteurs",
+        "description": "Un onglet par matériel : cliquez sur son titre pour l'ouvrir ou le replier. Les puissances en kW sont converties en W automatiquement.",
+        "sections": {
+          "pv": {
+            "name": "☀️ Photovoltaïque",
+            "description": "Production, consommation de la maison et puissance de l'installation.",
+            "data": {
+              "pv_power": "Puissance de production",
+              "load_power": "Consommation totale de la maison",
+              "pv_peak": "Puissance de l'installation",
+              "load_includes_cumulus": "La consommation de la maison inclut le cumulus",
+              "grid_import_threshold": "Soutirage signalé au-dessus de"
+            },
+            "data_description": {
+              "pv_power": "Capteur de puissance solaire instantanée (W ou kW).",
+              "load_power": "Capteur de consommation instantanée de toute la maison.",
+              "pv_peak": "Puissance crête (W). Sert d'échelle aux jauges et à la vitesse des flux.",
+              "load_includes_cumulus": "Coché : le cumulus est compté dans la consommation totale (cas d'un compteur général). Le détail « dont cumulus » en est alors déduit.",
+              "grid_import_threshold": "En dessous, le soutirage calculé est ignoré : pas de flux animé, pas de badge, autonomie non réduite."
+            }
+          },
+          "battery": {
+            "name": "🔋 Batterie",
+            "description": "État de charge, puissances de charge et de décharge, capacité.",
+            "data": {
+              "soc": "État de charge",
+              "charge_power": "Puissance de charge",
+              "discharge_power": "Puissance de décharge",
+              "capacity": "Capacité de la batterie"
+            },
+            "data_description": {
+              "soc": "Capteur du niveau de charge (%).",
+              "charge_power": "Capteur de puissance de charge (W ou kW).",
+              "discharge_power": "Capteur de puissance de décharge (W ou kW).",
+              "capacity": "Capacité utile (kWh). 0 pour ne pas afficher l'énergie stockée."
+            }
+          },
+          "router": {
+            "name": "🔀 Routeur solaire",
+            "description": "Mesures du routeur, toutes facultatives : elles sont affichées dans le détail de la carte. Le surplus envoyé au routeur est toujours calculé à partir de la production et de la consommation.",
+            "data": {
+              "surplus_flow": "Flux de surplus solaire",
+              "cumulus_flow": "Flux vers le cumulus",
+              "grid_flow": "Flux vers le réseau",
+              "router_power": "Puissance du routeur"
+            },
+            "data_description": {
+              "surplus_flow": "Surplus mesuré par le routeur (W).",
+              "cumulus_flow": "Puissance envoyée au cumulus par le routeur (W). Utilisée pour le cumulus si son onglet n'a pas de capteur de puissance.",
+              "grid_flow": "Puissance injectée mesurée par le routeur (W).",
+              "router_power": "Puissance de sortie du routeur (W)."
+            }
+          },
+          "cumulus": {
+            "name": "♨️ Cumulus",
+            "description": "Puissance de chauffe, température et consigne.",
+            "data": {
+              "heating_power": "Puissance de charge (chauffe)",
+              "temperature": "Température du cumulus",
+              "max_setpoint": "Consigne de chauffe max"
+            },
+            "data_description": {
+              "heating_power": "Puissance absorbée par la résistance du cumulus (W). Facultatif si le routeur mesure déjà le flux vers le cumulus.",
+              "temperature": "Capteur de température de l'eau (°C).",
+              "max_setpoint": "Température maximale visée (°C). La jauge du cumulus se remplit jusqu'à cette valeur."
+            }
+          }
+        }
+      }
+    },
+    "error": {
+      "same_entity": "La production et la consommation doivent être deux capteurs différents.",
+      "battery_power": "Indiquez au moins la puissance de charge ou la puissance de décharge de la batterie."
+    },
+    "abort": {
+      "single_instance_allowed": "Solar Powerflow est déjà configuré. Utilisez « Configurer » pour modifier les réglages."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Solar Powerflow · équipements",
+        "description": "Cochez le matériel installé, puis ce qui doit apparaître sur la carte. L'étape suivante propose un onglet de réglages par matériel coché.",
+        "data": {
+          "name": "Nom de l'installation",
+          "has_battery": "Batterie installée",
+          "show_battery": "Afficher la batterie sur la carte",
+          "has_router": "Routeur solaire installé",
+          "show_router": "Afficher le routeur sur la carte",
+          "has_cumulus": "Cumulus (chauffe-eau) installé",
+          "show_cumulus": "Afficher le cumulus sur la carte"
+        },
+        "data_description": {
+          "name": "Titre de la carte et nom de l'appareil dans Home Assistant.",
+          "show_battery": "Sans batterie installée, ce choix est ignoré.",
+          "show_router": "Sans routeur installé, ce choix est ignoré.",
+          "show_cumulus": "Sans cumulus installé, ce choix est ignoré."
+        }
+      },
+      "entities": {
+        "title": "Solar Powerflow · capteurs",
+        "description": "Un onglet par matériel : cliquez sur son titre pour l'ouvrir ou le replier. Les puissances en kW sont converties en W automatiquement.",
+        "sections": {
+          "pv": {
+            "name": "☀️ Photovoltaïque",
+            "description": "Production, consommation de la maison et puissance de l'installation.",
+            "data": {
+              "pv_power": "Puissance de production",
+              "load_power": "Consommation totale de la maison",
+              "pv_peak": "Puissance de l'installation",
+              "load_includes_cumulus": "La consommation de la maison inclut le cumulus",
+              "grid_import_threshold": "Soutirage signalé au-dessus de"
+            },
+            "data_description": {
+              "pv_power": "Capteur de puissance solaire instantanée (W ou kW).",
+              "load_power": "Capteur de consommation instantanée de toute la maison.",
+              "pv_peak": "Puissance crête (W). Sert d'échelle aux jauges et à la vitesse des flux.",
+              "load_includes_cumulus": "Coché : le cumulus est compté dans la consommation totale (cas d'un compteur général). Le détail « dont cumulus » en est alors déduit.",
+              "grid_import_threshold": "En dessous, le soutirage calculé est ignoré : pas de flux animé, pas de badge, autonomie non réduite."
+            }
+          },
+          "battery": {
+            "name": "🔋 Batterie",
+            "description": "État de charge, puissances de charge et de décharge, capacité.",
+            "data": {
+              "soc": "État de charge",
+              "charge_power": "Puissance de charge",
+              "discharge_power": "Puissance de décharge",
+              "capacity": "Capacité de la batterie"
+            },
+            "data_description": {
+              "soc": "Capteur du niveau de charge (%).",
+              "charge_power": "Capteur de puissance de charge (W ou kW).",
+              "discharge_power": "Capteur de puissance de décharge (W ou kW).",
+              "capacity": "Capacité utile (kWh). 0 pour ne pas afficher l'énergie stockée."
+            }
+          },
+          "router": {
+            "name": "🔀 Routeur solaire",
+            "description": "Mesures du routeur, toutes facultatives : elles sont affichées dans le détail de la carte. Le surplus envoyé au routeur est toujours calculé à partir de la production et de la consommation.",
+            "data": {
+              "surplus_flow": "Flux de surplus solaire",
+              "cumulus_flow": "Flux vers le cumulus",
+              "grid_flow": "Flux vers le réseau",
+              "router_power": "Puissance du routeur"
+            },
+            "data_description": {
+              "surplus_flow": "Surplus mesuré par le routeur (W).",
+              "cumulus_flow": "Puissance envoyée au cumulus par le routeur (W). Utilisée pour le cumulus si son onglet n'a pas de capteur de puissance.",
+              "grid_flow": "Puissance injectée mesurée par le routeur (W).",
+              "router_power": "Puissance de sortie du routeur (W)."
+            }
+          },
+          "cumulus": {
+            "name": "♨️ Cumulus",
+            "description": "Puissance de chauffe, température et consigne.",
+            "data": {
+              "heating_power": "Puissance de charge (chauffe)",
+              "temperature": "Température du cumulus",
+              "max_setpoint": "Consigne de chauffe max"
+            },
+            "data_description": {
+              "heating_power": "Puissance absorbée par la résistance du cumulus (W). Facultatif si le routeur mesure déjà le flux vers le cumulus.",
+              "temperature": "Capteur de température de l'eau (°C).",
+              "max_setpoint": "Température maximale visée (°C). La jauge du cumulus se remplit jusqu'à cette valeur."
+            }
+          }
+        }
+      }
+    },
+    "error": {
+      "same_entity": "La production et la consommation doivent être deux capteurs différents.",
+      "battery_power": "Indiquez au moins la puissance de charge ou la puissance de décharge de la batterie."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "etat": {
+        "name": "État",
+        "state": {
+          "veille": "Veille",
+          "autoconsommation": "Autoconsommation",
+          "charge_batterie": "Charge batterie",
+          "routage_cumulus": "Routage vers le cumulus",
+          "surplus_injecte": "Surplus injecté",
+          "sur_batterie": "Sur batterie",
+          "soutirage_reseau": "Soutirage réseau"
+        }
+      },
+      "surplus_solaire": {
+        "name": "Surplus solaire"
+      },
+      "surplus_routeur": {
+        "name": "Surplus vers le routeur"
+      },
+      "consommation_hors_cumulus": {
+        "name": "Consommation hors cumulus"
+      },
+      "cumulus_solaire": {
+        "name": "Cumulus chauffé par le solaire"
+      },
+      "cumulus_reseau": {
+        "name": "Cumulus chauffé par le réseau"
+      },
+      "cumulus_batterie": {
+        "name": "Cumulus chauffé par la batterie"
+      },
+      "part_cumulus": {
+        "name": "Part du cumulus dans la consommation"
+      },
+      "reseau_soutirage": {
+        "name": "Soutirage réseau"
+      },
+      "reseau_injection": {
+        "name": "Injection réseau"
+      },
+      "autonomie": {
+        "name": "Autonomie"
+      },
+      "autoconsommation": {
+        "name": "Autoconsommation"
+      }
+    }
+  }
+}

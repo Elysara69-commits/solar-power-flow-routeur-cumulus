@@ -1,0 +1,18 @@
+{
+  "entity": {
+    "sensor": {
+      "etat": { "default": "mdi:solar-power-variant" },
+      "surplus_solaire": { "default": "mdi:solar-power" },
+      "surplus_routeur": { "default": "mdi:arrow-decision" },
+      "consommation_hors_cumulus": { "default": "mdi:home-lightning-bolt" },
+      "cumulus_solaire": { "default": "mdi:water-boiler" },
+      "cumulus_reseau": { "default": "mdi:water-boiler-alert" },
+      "cumulus_batterie": { "default": "mdi:water-boiler" },
+      "part_cumulus": { "default": "mdi:chart-donut" },
+      "reseau_soutirage": { "default": "mdi:transmission-tower-import" },
+      "reseau_injection": { "default": "mdi:transmission-tower-export" },
+      "autonomie": { "default": "mdi:home-battery" },
+      "autoconsommation": { "default": "mdi:solar-power-variant-outline" }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "domain": "solar_powerflow",
+  "name": "Solar Powerflow",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": ["frontend", "http"],
+  "documentation": "https://github.com/votre-compte/solar-powerflow",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/votre-compte/solar-powerflow/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "2.0.0"
+}
